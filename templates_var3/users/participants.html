@@ -30,7 +30,7 @@
                 {% endif %}
             </div>
             <div class="participant-info">
-                <h3 class="participant-name">{{ participant.name }} {{ participant.surname }}</h3>
+                <h3 class="participant-name"><a href="{{ participant.get_absolute_url }}">{{ participant.name }} {{ participant.surname }}</a></h3>
                 <p class="participant-role">{{ participant.about|truncatechars:80 }}</p>
             </div>
             <div class="participant-card-footer">

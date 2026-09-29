@@ -23,14 +23,14 @@
                     {% include 'includes/svg/plus.html' %}
                     <p>Создать проект</p>
                 </a>
-                <a class="user-menu nav-link">
+                <button type="button" class="user-menu nav-link" aria-label="Меню профиля" aria-expanded="false" aria-controls="userSidebar">
                     {% if request.user.avatar %}
                         <img src="{{ request.user.avatar.url }}" alt="Аватар" class="avatar">
                     {% else %}
                         <img src="{% static 'images/default-avatar.png' %}" alt="Аватар по умолчанию" class="avatar">
                     {% endif %}
                     <span class="username">{{ request.user.name }} {{ request.user.surname }}</span>
-                </a>
+                </button>
                 {% else %}
                 <button class="button button-login nav-link" onclick="window.location.href='/users/login/'">
                     {% include 'includes/svg/login.html' %}
@@ -45,6 +45,7 @@
         </div>
     </div>
 </header>
+{% if request.user.is_authenticated %}
 <div id="userSidebar" class="user-sidebar">
     <div class="sidebar-content">
         <a href="/users/{{ request.user.id }}/"><span>{% include 'includes/svg/profile.html' %} Мой профиль</span></a>
@@ -59,3 +60,5 @@
         <a href="/users/logout/"><span style="color: #e7000b;">{% include 'includes/svg/leave.html' %} Выйти</span></a>
     </div>
 </div>
+
+{% endif %}

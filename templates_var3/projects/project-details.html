@@ -46,13 +46,13 @@
                 {% if project.github_url %}
                 <p class="project-link">
                     {% include 'includes/svg/github.html' %}
-                    <a href="{{ project.github_url }}" target="_blank">Репозиторий на GitHub</a>
+                    <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer">Репозиторий на GitHub</a>
                 </p>
                 {% endif %}
         </div>
         <div class="project-actions">
             <a href="#"
-               class="black-button black-button-share share-button"
+               class="black-button black-button-share share-button" aria-label="Поделиться ссылкой"
                data-url="/projects/{{ project.id }}">
                 {% include 'includes/svg/share.html' %}
             </a>
@@ -67,9 +67,10 @@
                     </button>
                 {% endif %}
             {% else %}
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated and project.status == 'open' or request.user in project.participants.all %}
                     <button id="participate-btn" class="black-button"
                             data-project="{{ project.id }}"
+                            data-closed="{% if project.status == 'closed' %}true{% else %}false{% endif %}"
                             data-user-id="{{ request.user.id }}"
                             data-user-name="{{ request.user.name }} {{ request.user.surname }}"
                             data-user-avatar="{% if request.user.avatar %}{{ request.user.avatar.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}"

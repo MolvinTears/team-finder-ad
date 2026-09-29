@@ -113,3 +113,21 @@ span svg {
 .black-button-share svg {
     margin: 0;
 }
+.hidden { display: none !important; }
+.messages { padding: 12px 24px; background: #e5f2e8; border-radius: 8px; }
+.messages p { margin: 0; }
+button:disabled { opacity: .55; cursor: wait; }
+:focus-visible { outline: 3px solid #628bb8; outline-offset: 3px; }
+.project-description { white-space: pre-wrap; overflow-wrap: anywhere; }
+.skill-suggestions li:focus { background: #eaf0f6; }
+.user-sidebar { visibility: hidden; }
+.user-sidebar.show { visibility: visible; }
+@media (max-width: 600px) {
+  .header-content { flex-wrap: wrap; gap: 12px; }
+  .main-nav { order: 3; justify-content: center; width: 100%; }
+  .profile-header, .profile-info, .project-header { flex-wrap: wrap; gap: 16px; }
+  .profile-actions, .project-actions { flex-wrap: wrap; }
+  .name-fields, .form-row { flex-direction: column; }
+  .project-card, .participant-card { min-width: 0; }
+  .project-title, .profile-name { overflow-wrap: anywhere; }
+}

@@ -33,7 +33,7 @@
                     {% endif %}
                     {% if user.github_url %}
                     <span>{% include 'includes/svg/github.html' %}
-                        <a href="{{ user.github_url }}" target="_blank">GitHub</a>
+                        <a href="{{ user.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </span>
                     {% endif %}
                 </div>
@@ -41,7 +41,7 @@
         </div>
         <div class="profile-actions">
             <a href="#"
-               class="black-button black-button-share share-button"
+               class="black-button black-button-share share-button" aria-label="Поделиться ссылкой"
                data-url="/users/{{ user.id }}">
                 {% include 'includes/svg/share.html' %}
             </a>

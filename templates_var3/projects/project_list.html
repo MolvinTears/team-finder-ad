@@ -12,7 +12,7 @@
 <div class="project-container">
     <div class="project-header">
         <h2 class="project-title">Актуальные проекты</h2>
-        {% if projects %}
+        {% if request.user.is_authenticated %}
             <a href="/projects/create-project" class="black-button">+ Создать проект</a>
         {% endif %}
     </div>
@@ -22,7 +22,7 @@
         <span class="filter-label">Фильтр по необходимым навыкам:</span>
         <div class="filter-chips">
             {% for skill in all_skills %}
-            <a href="?skill={{ skill }}"
+            <a href="?skill={{ skill|urlencode }}"
                class="filter-chip {% if active_skill == skill %}active{% endif %}">
                 {{ skill }}
             </a>
@@ -37,7 +37,11 @@
         {% for project in page_obj %}
         {% include 'includes/project-card.html' %}
         {% empty %}
-        {% include 'includes/empty-project-card.html' with empty_title="Пока нет проектов" empty_message="Создавайте проекты и делитесь ими с другими пользователями!" button_link="/projects/create-project" button_text="+ Создать проект" %}
+        {% if request.user.is_authenticated %}
+        {% include 'includes/empty-project-card.html' with empty_title="Проекты не найдены" empty_message="Попробуйте другой навык или создайте свой проект." button_link="/projects/create-project/" button_text="+ Создать проект" %}
+        {% else %}
+        {% include 'includes/empty-project-card.html' with empty_title="Проекты не найдены" empty_message="Попробуйте другой навык или войдите, чтобы создать проект." button_link="/users/login/" button_text="Войти" %}
+        {% endif %}
         {% endfor %}
     </div>
     {% if page_obj.has_other_pages %}
@@ -57,7 +61,7 @@
         {% endif %}
     </div>
     {% endif %}
-    {% include 'includes/project-fav-toggle.js' %}
+
 </div>
 
 {% endblock %}

@@ -12,6 +12,7 @@
     <h2>Вход в систему</h2>
     <form method="post">
         {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
 
         {{ form.non_field_errors }}
 

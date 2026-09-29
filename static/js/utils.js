@@ -69,3 +69,16 @@
     }
   }
 })();
+
+window.postJSON = async function(url, data) {
+  const response = await fetch(url, {
+    method: "POST", credentials: "same-origin",
+    headers: {"Content-Type": "application/json", "X-CSRFToken": window.getCookie("csrftoken") || ""},
+    body: JSON.stringify(data)
+  });
+  let result;
+  try { result = await response.json(); }
+  catch { throw new Error("Не удалось выполнить запрос. Обновите страницу и войдите снова."); }
+  if (!response.ok) throw new Error(result.error || "Не удалось выполнить запрос.");
+  return result;
+};

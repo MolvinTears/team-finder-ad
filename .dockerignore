@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+!.env_example
+.venv
+venv
+__pycache__
+*.pyc
+media
+staticfiles
+.coverage
+.ruff_cache
+htmlcov
+templates_var1
+templates_var2

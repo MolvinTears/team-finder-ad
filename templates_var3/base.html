@@ -3,6 +3,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="{% static 'images/default-avatar.png' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}TeamFinder{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
@@ -10,6 +12,7 @@
 </head>
 <body data-page="{% block page_id %}default{% endblock %}">
 {% include 'includes/header.html' %}
+{% if messages %}<div class="container messages" role="status">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>{% endif %}
 {% block content %}{% endblock %}
 <script src="{% static 'js/utils.js' %}"></script>
 <script src="{% static 'js/share.js' %}"></script>

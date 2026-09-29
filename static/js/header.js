@@ -9,13 +9,17 @@
 
     function openSidebar() {
       sidebar.classList.add('show');
+      userMenu.setAttribute('aria-expanded', 'true');
       overlay.classList.add('show');
     }
 
     function closeSidebar() {
       sidebar.classList.remove('show');
+      userMenu.setAttribute('aria-expanded', 'false');
       overlay.classList.remove('show');
     }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
     userMenu.addEventListener('click', (e) => {
       e.stopPropagation();
